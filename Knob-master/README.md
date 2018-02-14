@@ -1,3 +1,6 @@
+https://github.com/csgulley/Knob
+Knob created by Chris Gulley
+
 # iOS Knob Control
 This is a simple iOS knob control implemented in Swift as a UIControl subclass. It is rotated with a single finger pan and is continuous, meaning you can rotate it 360°.
 

@@ -4,10 +4,10 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var knob: Knob!
-
-    //let BPM_label = UILabel()
-
     @IBOutlet weak var BPM_label: UILabel!
+    var bpm: Double = 90
+    var lastPos: Double = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,23 +21,27 @@ class ViewController: UIViewController {
 
     @IBAction func knobRotated(_ sender: Knob) {
         super.viewDidLoad()
-        /*
-        if let displayThis = knob?.value {
-            self.BPM_label?.text = "\(displayThis)"
+        
+        var diff: Double
+        diff = (knob.value) - lastPos
+        
+        if ((diff) > M_PI)
+        {
+            diff -= 2 * M_PI
         }
-        */
+        else if (diff < -M_PI)
+        {
+            diff += 2 * M_PI}
+        
+        lastPos = knob.value
+        bpm += diff * 10
         
         print("value: \(knob.value)")
-        //BPM_label.text = String(knob.value)
-        BPM_label?.text = "\(knob.value)"
+        //BPM_label?.text = "\(90+((50*knob.value)))"
+        BPM_label?.text = (String(format: "%.0f", bpm)) //round to zero decimal places
+      
         
-        let label = UILabel()
-
-        label.text = "Hello"
-        //self.BPM_label.text = String(self.knob.value)
-        
-                label.text = "Hello"
-        self.view.addSubview(label)
+       
     }
 }
 

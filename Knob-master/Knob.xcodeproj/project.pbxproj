@@ -13,6 +13,8 @@
 		35561C0C1BA824DA00671525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35561C0B1BA824DA00671525 /* Assets.xcassets */; };
 		35561C0F1BA824DA00671525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35561C0D1BA824DA00671525 /* LaunchScreen.storyboard */; };
 		35561C171BA824F400671525 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35561C161BA824F400671525 /* Knob.swift */; };
+		F1648ED620594B02004B3B5C /* snizzap1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1648ED520594B02004B3B5C /* snizzap1.wav */; };
+		F1648ED820594B08004B3B5C /* snizzap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1648ED720594B08004B3B5C /* snizzap2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		35561C0E1BA824DA00671525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		35561C101BA824DA00671525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35561C161BA824F400671525 /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
+		F1648ED520594B02004B3B5C /* snizzap1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snizzap1.wav; path = "../../../Ronome-master/Ronome/snizzap1.wav"; sourceTree = "<group>"; };
+		F1648ED720594B08004B3B5C /* snizzap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snizzap2.wav; path = "../../../Ronome-master/Ronome/snizzap2.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				35561C061BA824DA00671525 /* ViewController.swift */,
 				35561C081BA824DA00671525 /* Main.storyboard */,
 				35561C0B1BA824DA00671525 /* Assets.xcassets */,
+				F1648ED520594B02004B3B5C /* snizzap1.wav */,
+				F1648ED720594B08004B3B5C /* snizzap2.wav */,
 				35561C0D1BA824DA00671525 /* LaunchScreen.storyboard */,
 				35561C101BA824DA00671525 /* Info.plist */,
 			);
@@ -125,8 +131,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1648ED620594B02004B3B5C /* snizzap1.wav in Resources */,
 				35561C0F1BA824DA00671525 /* LaunchScreen.storyboard in Resources */,
 				35561C0C1BA824DA00671525 /* Assets.xcassets in Resources */,
+				F1648ED820594B08004B3B5C /* snizzap2.wav in Resources */,
 				35561C0A1BA824DA00671525 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

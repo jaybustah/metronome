@@ -1,5 +1,10 @@
+Metronome utilizes a knob created by Chris Gulley to provide easier control over a metronome
+
 https://github.com/csgulley/Knob
 Knob created by Chris Gulley
+
+https://github.com/dvinesett/Ronome
+Ronome created by Dylan Vinesett
 
 # iOS Knob Control
 This is a simple iOS knob control implemented in Swift as a UIControl subclass. It is rotated with a single finger pan and is continuous, meaning you can rotate it 360°.

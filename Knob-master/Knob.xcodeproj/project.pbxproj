@@ -15,6 +15,7 @@
 		35561C171BA824F400671525 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35561C161BA824F400671525 /* Knob.swift */; };
 		F1648ED620594B02004B3B5C /* snizzap1.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1648ED520594B02004B3B5C /* snizzap1.wav */; };
 		F1648ED820594B08004B3B5C /* snizzap2.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1648ED720594B08004B3B5C /* snizzap2.wav */; };
+		F18A9347207C70C7002747E0 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18A9346207C70C7002747E0 /* ViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		35561C161BA824F400671525 /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		F1648ED520594B02004B3B5C /* snizzap1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snizzap1.wav; path = "../../../Ronome-master/Ronome/snizzap1.wav"; sourceTree = "<group>"; };
 		F1648ED720594B08004B3B5C /* snizzap2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = snizzap2.wav; path = "../../../Ronome-master/Ronome/snizzap2.wav"; sourceTree = "<group>"; };
+		F18A9346207C70C7002747E0 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController2.swift; path = ../ViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +64,9 @@
 			children = (
 				35561C161BA824F400671525 /* Knob.swift */,
 				35561C041BA824DA00671525 /* AppDelegate.swift */,
-				35561C061BA824DA00671525 /* ViewController.swift */,
 				35561C081BA824DA00671525 /* Main.storyboard */,
+				35561C061BA824DA00671525 /* ViewController.swift */,
+				F18A9346207C70C7002747E0 /* ViewController2.swift */,
 				35561C0B1BA824DA00671525 /* Assets.xcassets */,
 				F1648ED520594B02004B3B5C /* snizzap1.wav */,
 				F1648ED720594B08004B3B5C /* snizzap2.wav */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35561C071BA824DA00671525 /* ViewController.swift in Sources */,
+				F18A9347207C70C7002747E0 /* ViewController2.swift in Sources */,
 				35561C171BA824F400671525 /* Knob.swift in Sources */,
 				35561C051BA824DA00671525 /* AppDelegate.swift in Sources */,
 			);

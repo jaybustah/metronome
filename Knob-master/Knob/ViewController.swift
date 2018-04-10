@@ -14,9 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var tsLowerLabel: UILabel!
     @IBOutlet weak var tsUpperStepper: UIStepper!
     @IBOutlet weak var tsLowerStepper: UIStepper!
+    @IBOutlet weak var secondViewSegue: UIButton!
     
     var bpm: Double = 90
     var lastPos: Double = 0
+    var lastStep: Double = 5
     
     var metronomeTimer: Timer!
     var metronomeIsOn = false
@@ -53,6 +55,9 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func secondViewSegueClicked(_ sender: UIButton) {
+        stopMetronome(sender)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,15 +88,17 @@ class ViewController: UIViewController {
         //BPMlabel.text = "\(Double(sender.value))"
         //bpm += sender.value
         //bpm += tempoStepper.value
-        var value = tempoStepper.value
         
-        if (tempoStepper.value > value) {
-            value += 1
+        
+        if (tempoStepper.value == lastStep + 1 || tempoStepper.value < lastStep - 10) {
+            bpm += 1
         } else {
-            value -= 1
+            bpm -= 1
         }
         
-        BPMlabel?.text = (String(format: "%.0f", bpm + value))
+        lastStep = tempoStepper.value
+        
+        BPMlabel?.text = (String(format: "%.0f", bpm))
         
         restartMetronome()
     }
@@ -175,7 +182,7 @@ class ViewController: UIViewController {
         {
             bpm = 30
             knob.tintColor = UIColor.red
-            knob.isEnabled = false
+            //knob.isEnabled = false
        
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             //knob.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
@@ -190,7 +197,7 @@ class ViewController: UIViewController {
         {
             bpm = 400
             knob.tintColor = UIColor.red
-            knob.isEnabled = false
+            //knob.isEnabled = false
            //knob.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
         }
         
@@ -198,12 +205,12 @@ class ViewController: UIViewController {
         
        
         if 30...400 ~= bpm {
-        BPMlabel?.text = (String(format: "%.0f", bpm))
+            BPMlabel?.text = (String(format: "%.0f", bpm))
         }
         restartMetronome()
 
   
-        }
+    }
     
 }
 

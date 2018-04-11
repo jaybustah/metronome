@@ -15,8 +15,8 @@ class ViewController2: UIViewController {
     var audioPlayer:AVAudioPlayer!
 
     @IBAction func volumeChanged(_ sender: UISlider) {
-        audioPlayer.volume = volumeSlider.value
-
+        //audioPlayer.volume = volumeSlider.value
+        // will be a volume control
     }
   
     override func viewDidLoad() {

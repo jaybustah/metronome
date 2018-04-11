@@ -1,4 +1,5 @@
-
+// ViewController.swift
+// Jay Guerrero
 
 import UIKit
 import AVFoundation
@@ -15,15 +16,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var tsUpperStepper: UIStepper!
     @IBOutlet weak var tsLowerStepper: UIStepper!
     @IBOutlet weak var secondViewSegue: UIButton!
+    @IBOutlet weak var tempoTermLabel: UILabel!
     
+    // variables needed by the tempo stepper
     var bpm: Double = 90
     var lastPos: Double = 0
     var lastStep: Double = 5
     
+    // metronome variables
     var metronomeTimer: Timer!
     var metronomeIsOn = false
     var metronomeSoundPlayer: AVAudioPlayer!
     var metronomeAccentPlayer: AVAudioPlayer!
+    
+    // haptic feedback variables
+    let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+    let mediumGenerator = UIImpactFeedbackGenerator(style: .medium)
+    let lightGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var count: Int = 0 {
         didSet {
@@ -37,7 +46,6 @@ class ViewController: UIViewController {
    
     var tempo: TimeInterval = 90 {
         didSet {
-            //BPMlabel.text = String(format: "%.0f", bpm)
             tempoStepper.value = bpm
         }
     }
@@ -48,6 +56,7 @@ class ViewController: UIViewController {
             tsUpperStepper.value = Double(tsUpper)
         }
     }
+    
     var tsLower: Int = 4 {
         didSet {
             tsLowerLabel.text = String(tsLower)
@@ -55,18 +64,17 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func secondViewSegueClicked(_ sender: UIButton) {
+    @IBAction func secondViewSegueClicked(_ sender: UIButton) {  // to contain future features
         stopMetronome(sender)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tempoStepper.autorepeat = true
-        //bpm = 90
         tsUpper = 4
         tsLower = 4
-       
         
+        // include sound files
         let metronomeSoundURL = URL(fileURLWithPath: Bundle.main.path(forResource: "snizzap1", ofType: "wav")!)
         let metronomeAccentURL = URL(fileURLWithPath: Bundle.main.path(forResource: "snizzap2", ofType: "wav")!)
         
@@ -75,20 +83,14 @@ class ViewController: UIViewController {
         
         metronomeSoundPlayer.prepareToPlay()
         metronomeAccentPlayer.prepareToPlay()
-
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func stepTempo(_ sender: UIStepper) {
-        //BPMlabel.text = "\(Double(sender.value))"
-        //bpm += sender.value
-        //bpm += tempoStepper.value
-        
         
         if (tempoStepper.value == lastStep + 1 || tempoStepper.value < lastStep - 10) {
             bpm += 1
@@ -98,24 +100,21 @@ class ViewController: UIViewController {
         
         lastStep = tempoStepper.value
         
-        BPMlabel?.text = (String(format: "%.0f", bpm))
+        BPMlabel?.text = (String(format: "%.0f", bpm)) // output changes made to bpm by the tempo stepper
         
-        restartMetronome()
+        restartMetronome() // restart metronome if tempo stepper is clicked
     }
    
     
     @IBAction func stepTsUpper(_ sender: UIStepper) {
         tsUpper = Int(sender.value)
-        
         restartMetronome()
     }
-    
     
     @IBAction func stepTsLower(_ sender: UIStepper) {
         tsLower = Int(sender.value)
         restartMetronome()
     }
-    
     
     @IBAction func toggleClick(_ sender: UIButton) {
         if metronomeIsOn {
@@ -140,12 +139,16 @@ class ViewController: UIViewController {
         metronomeTimer?.fire()
     }
     
-    func playMetronomeSound() {
+    @objc func playMetronomeSound() {
         count += 1
         if count == 1 {
             metronomeAccentPlayer.play()
+            heavyGenerator.prepare()
+            heavyGenerator.impactOccurred()
         } else {
             metronomeSoundPlayer.play()
+            lightGenerator.prepare()
+            lightGenerator.impactOccurred()
             if count == tsUpper {
                 count = 0
             }
@@ -158,7 +161,6 @@ class ViewController: UIViewController {
             startMetronome(playButton)
         }
     }
-
     
     @IBAction func knobRotated(_ sender: Knob) {
         super.viewDidLoad()
@@ -166,51 +168,70 @@ class ViewController: UIViewController {
         var diff: Double
         diff = (knob.value) - lastPos
         
-        if ((diff) > M_PI)
+        if ((diff) > Double.pi)
         {
-            diff -= 2 * M_PI
+            diff -= 2 * Double.pi
         }
-        else if (diff < -M_PI)
+        else if (diff < -Double.pi)
         {
-            diff += 2 * M_PI}
+            diff += 2 * Double.pi}
         
         lastPos = knob.value
         bpm += diff * 10
         
+        mediumGenerator.prepare()
+        mediumGenerator.impactOccurred() // give haptic feedback as knob rotates
         
-        if(bpm < 30)
+        if (bpm < 30)
         {
             bpm = 30
             knob.tintColor = UIColor.red
-            //knob.isEnabled = false
-       
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            //knob.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
+            // alert feedback, trying to set bpm out of range
         }
         else if (bpm < 400 && bpm > 30)
         {
             knob.tintColor = UIColor.blue
             knob.isEnabled = true
-            //knob.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         }
         else if (bpm > 400)
         {
             bpm = 400
             knob.tintColor = UIColor.red
-            //knob.isEnabled = false
-           //knob.backgroundColor = UIColor(white: 0.0, alpha: 1.0)
         }
-        
-        print("value: \(knob.value)") // console output
-        
        
         if 30...400 ~= bpm {
             BPMlabel?.text = (String(format: "%.0f", bpm))
         }
-        restartMetronome()
-
-  
+        
+        if (bpm <= 50) {
+            tempoTermLabel.text = "Grave"
+        } else if (bpm > 50 && bpm < 55) {
+            tempoTermLabel.text = "Largo"
+        } else if (bpm > 55 && bpm < 60) {
+            tempoTermLabel.text = "Larghetto"
+        } else if (bpm > 60 && bpm < 70) {
+            tempoTermLabel.text = "Adagio"
+        } else if (bpm > 70 && bpm < 85) {
+            tempoTermLabel.text = "Andante"
+        } else if (bpm > 85 && bpm < 100) {
+            tempoTermLabel.text = "Moderato"
+        } else if (bpm > 100 && bpm < 115) {
+            tempoTermLabel.text = "Allegretto"
+        } else if (bpm > 115 && bpm < 140) {
+            tempoTermLabel.text = "Allegro"
+        } else if (bpm > 140 && bpm < 150) {
+            tempoTermLabel.text = "Vivace"
+        } else if (bpm > 150 && bpm < 170) {
+            tempoTermLabel.text = "Presto"
+        } else if (bpm > 150) {
+            tempoTermLabel.text = "Prestissimo"
+        }
+        
+        print("value: \(knob.value)") // console output
+        restartMetronome() //restarts metronome when knob is rotated
     }
+    
     
 }
 

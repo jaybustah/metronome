@@ -1,4 +1,5 @@
-
+// Knob.swift
+// Copyright © 2018 Chris Gulley. All rights reserved.
 
 import UIKit
 
@@ -16,7 +17,7 @@ extension CGVector {
      */
     func angleFromVector(_ vector: CGVector) -> Double {
         let angle = Double(atan2(dy, dx) - atan2(vector.dy, vector.dx))
-        return angle > 0 ? angle : angle + 2 * M_PI
+        return angle > 0 ? angle : angle + 2 * Double.pi
     }
 }
 
@@ -71,7 +72,7 @@ open class Knob: UIControl {
             return angle
         }
         set {
-            angle = newValue.truncatingRemainder(dividingBy: (M_PI * 2))
+            angle = newValue.truncatingRemainder(dividingBy: (Double.pi * 2))
             updateLayer()
         }
        
@@ -171,7 +172,7 @@ open class Knob: UIControl {
         
         // Adjust the angle to be in the counterclockwise direction from the positive
         // x-axis to accomodate the standard parametric equations for a circle used below.
-        let t = 5 / 2 * M_PI - angle
+        let t = 5 / 2 * Double.pi - angle
         let center = indicatorLayer.bounds.center
         
         let x1 = center.x + (indicatorLayer.bounds.width / 2) * CGFloat(cos(t))
@@ -195,7 +196,7 @@ open class Knob: UIControl {
         let vector = touch.location(in: self) - bounds.center
         
         // Add angular difference to our current value.
-        angle = (angle + vector.angleFromVector(lastVector)).truncatingRemainder(dividingBy: (2 * M_PI))
+        angle = (angle + vector.angleFromVector(lastVector)).truncatingRemainder(dividingBy: (2 * Double.pi))
         
         lastVector = vector
         updateIndicator()

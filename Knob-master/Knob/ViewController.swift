@@ -18,8 +18,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondViewSegue: UIButton!
     @IBOutlet weak var tempoTermLabel: UILabel!
     
+    
+    final class Shared {
+        static let shared = Shared()
+        var bpm: Double = 90
+    }
+    
     // variables needed by the tempo stepper
-    var bpm: Double = 90
+     var bpm: Double = 90
     var lastPos: Double = 0
     var lastStep: Double = 5
     

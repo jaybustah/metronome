@@ -9,6 +9,38 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tempo Ranges View Controller-->
+        <scene sceneID="KQ6-nF-b8O">
+            <objects>
+                <viewController id="Q3g-Nf-Shv" customClass="TempoRangesViewController" customModule="Knob" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PyU-Gd-WeG"/>
+                        <viewControllerLayoutGuide type="bottom" id="FxW-6X-XMb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VdR-Dw-fwi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZv-e3-zsD">
+                                <rect key="frame" x="49" y="43" width="46" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="largoClicked:" destination="Q3g-Nf-Shv" eventType="touchUpInside" id="auu-qg-fNy"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="PassTempo" id="s6D-8T-4P9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="largoOutlet" destination="RZv-e3-zsD" id="7un-ot-8Kf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2NS-lP-RYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1858" y="-180"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -119,6 +151,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dar-sr-RAU">
+                                <rect key="frame" x="225" y="206" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Q3g-Nf-Shv" kind="show" id="SV9-8U-y1P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -182,4 +222,7 @@
     <resources>
         <image name="moreIcon" width="225" height="225"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="s6D-8T-4P9"/>
+    </inferredMetricsTieBreakers>
 </document>

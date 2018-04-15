@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Knob.xcodeproj">
+      location = "self:/Users/jayguerrero/Documents/metronome/Knob-master/myMetronome.xcodeproj">
    </FileRef>
 </Workspace>
